@@ -44,15 +44,13 @@ def print_text(message, font_color=(0, 0, 0), font_type='fonts/Arial.ttf',
     font = pygame.freetype.Font(font_type, font_size)
     text_rect = font.get_rect(message)
 
-    # Если x не указан, центрируем по горизонтали
     if x is None:
         text_rect.centerx = target_surface.get_rect().centerx
     else:
         text_rect.x = x
     text_rect.y = y
-
     
-    # Рендерим текст напрямую на основное окно
+    # Render text directly to main window
     font.render_to(target_surface, text_rect.topleft, message, fgcolor=font_color)
 
 def pause_game():
@@ -78,18 +76,18 @@ def pause_game():
             mouse_pos[0] - pause_surface_rect.x,
             mouse_pos[1] - pause_surface_rect.y
         )
-        # Обработка событий
+        # Event handler
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
 
             if continue_button.is_clicked(mouse_pause_pos, event):
-                print("Игра продолжена!")
+                print("Game is continued!")
                 paused = False
                  
             if options_button.is_clicked(mouse_pause_pos, event):
-                print("Открыты настройки")
+                print("Options were open")
                 options_menu()
 
                 pause_surface_rect.center = main_window.get_rect().center
@@ -106,7 +104,7 @@ def pause_game():
                 
 
             if main_menu_button.is_clicked(mouse_pause_pos, event):
-                print('Ушли в главное мню!')
+                print('Went to main menu!')
                 paused = False
                 main_menu()
 
@@ -114,17 +112,17 @@ def pause_game():
                 pygame.quit()
                 sys.exit()
 
-        # Проверка наведения на кнопки
+        # Check buttons hovring by mouse cursor
         continue_button.check_hover(mouse_pause_pos)
         options_button.check_hover(mouse_pause_pos)
         main_menu_button.check_hover(mouse_pause_pos)
         quit_button.check_hover(mouse_pause_pos)
         
-        # Отрисовка
+        # Drawing
         
         main_window.blit(pause_surface, pause_surface_rect)
 
-        # Отрисовка кнопок
+        # Buttons drawing
         pause_surface.fill(GLASS)
         continue_button.draw(pause_surface)
         options_button.draw(pause_surface)
@@ -156,7 +154,7 @@ def game_over(scores):
                 print_text('Congrats! You are in TOP 5 now!', y=300)
                 print_text('Please enter your name for table of records:', y=350)
         
-                # Активация/деактивация поля по клику
+                # Enable/disable text field by mouse click
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if input_field_rect.collidepoint(event.pos):
                         active = True
@@ -167,7 +165,7 @@ def game_over(scores):
                 # Ввод текста
                 if event.type == pygame.KEYDOWN and active:
                     if event.key == pygame.K_RETURN:
-                        print("Введённый текст:", input_field_text)
+                        print("Entered text is: ", input_field_text)
                         add_result(input_field_text, scores)
                         print_text('Your result have been written!', y=450)
                         print_text('Press Escape to go to main menu', y=500)
@@ -175,17 +173,15 @@ def game_over(scores):
                         input_field_text = input_field_text[:-1]
                     else:
                         input_field_text += event.unicode
-                
-                
 
         if scores >= get_results()[4][1]:
             pygame.draw.rect(main_window, color, input_field_rect, 2)
 
-            # Текст внутри поля
+            # Text inside field
             text_surface = font.render(input_field_text, fgcolor=(0, 0, 0))
             main_window.blit(text_surface[0], (input_field_rect.x + 5, input_field_rect.y + 5))
             
-            # Подсказка (placeholder)
+            # placeholder (TODO: it isn't working)
             if not input_field_text and not active:
                 placeholder = font.render("Enter your name here", True, (100, 100, 100))
                 main_window.blit(placeholder[0], (input_field_rect.x + 5, input_field_rect.y + 5))
@@ -228,41 +224,41 @@ def main_menu():
             mouse_pos[0] - main_menu_surface_rect.x,
             mouse_pos[1] - main_menu_surface_rect.y
         )
-        # Обработка событий
+        # Events handlers
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
 
             if start_button.is_clicked(mouse_main_menu_pos, event):
-                print("Игра начата!")
+                print("Game is started!")
                 pygame.mixer.music.stop()
                 run_game()
                  
             if options_button.is_clicked(mouse_main_menu_pos, event):
-                print("Открыты настройки")
+                print("Options were opened")
                 options_menu()
                 main_menu_surface_rect.center = main_window.get_rect().center
 
             if records_button.is_clicked(mouse_main_menu_pos, event):
-                print('Открыты результаты!')
+                print('Results were opened!')
                 records_menu()
 
             if quit_button.is_clicked(mouse_main_menu_pos, event):
                 pygame.quit()
                 sys.exit()
 
-        # Проверка наведения на кнопки
+        # Check buttons hover by mouse cursor
         start_button.check_hover(mouse_main_menu_pos)
         options_button.check_hover(mouse_main_menu_pos)
         records_button.check_hover(mouse_main_menu_pos)
         quit_button.check_hover(mouse_main_menu_pos)
         
-        # Отрисовка
+        # Drawing
         main_window.blit(menu_background, (0, 0))
         main_window.blit(main_menu_surface, main_menu_surface_rect)
 
-        # Отрисовка кнопок
+        # Buttons drawing
         main_menu_surface.fill(GLASS)
         start_button.draw(main_menu_surface)
         options_button.draw(main_menu_surface)
@@ -298,7 +294,7 @@ def options_menu():
             mouse_pos[1] - options_surface_rect.y
         )
         
-        # Обработка событий
+        # Events handlers
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -331,11 +327,11 @@ def options_menu():
             if back_button.is_clicked(mouse_options_pos, event):
                 running = False
         
-        # Отрисовка
+        # Drawing
         main_window.blit(menu_background, (0, 0))
         main_window.blit(options_surface, options_surface_rect)
 
-        # Отрисовка кнопок
+        # Buttons drawing
         options_surface.fill(LIGHT_GOLDEN_YELLOW)
         slider.draw(options_surface)
         mode_800_button.draw(options_surface)
@@ -343,7 +339,7 @@ def options_menu():
         mode_1920_button.draw(options_surface)
         back_button.draw(options_surface)
 
-        # Проверка наведения на кнопки
+        # Check hover by mouse
         slider.update(mouse_options_pos)
         pygame.mixer.music.set_volume(slider.value / 100)
         sett.volume = slider.value
@@ -378,7 +374,6 @@ def records_menu():
             mouse_pos[1] - records_surface_rect.y
         )
         
-        # Обработка событий
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -387,7 +382,6 @@ def records_menu():
             if back_button.is_clicked(mouse_records_pos, event):
                 running = False
         
-        # Отрисовка
         main_window.blit(menu_background, (0, 0))
 
         # Отрисовка текста с рекордами (обязательно ДО отрисовки его поверхности)
