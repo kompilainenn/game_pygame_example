@@ -1,0 +1,74 @@
+# Basic colors
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+GRAY = (128, 128, 128)
+SILVER = (192, 192, 192)
+
+# Red variants
+DARK_RED = (139, 0, 0)
+CRIMSON = (220, 20, 60)
+FIREBRICK = (178, 34, 34)
+TOMATO = (255, 99, 71)
+SALMON = (250, 128, 114)
+LIGHT_SALMON = (255, 160, 122)
+
+# Green variants
+LIME = (0, 255, 0)
+FOREST_GREEN = (34, 139, 34)
+DARK_GREEN = (0, 100, 0)
+SEA_GREEN = (46, 139, 87)
+SPRING_GREEN = (0, 255, 127)
+OLIVE = (128, 128, 0)
+
+# Blue variants
+NAVY = (0, 0, 128)
+DARK_BLUE = (0, 0, 139)
+MIDNIGHT_BLUE = (25, 25, 112)
+ROYAL_BLUE = (65, 105, 225)
+DODGER_BLUE = (30, 144, 255)
+LIGHT_BLUE = (173, 216, 230)
+SKY_BLUE = (135, 206, 235)
+AQUA = (0, 255, 255)
+TURQUOISE = (64, 224, 208)
+
+# Purple variants
+PURPLE = (128, 0, 128)
+INDIGO = (75, 0, 130)
+DARK_VIOLET = (148, 0, 211)
+ORCHID = (218, 112, 214)
+PLUM = (221, 160, 221)
+LAVENDER = (230, 230, 250)
+
+# Yellow/Orange variants
+YELLOW = (255, 255, 0)
+GOLD = (255, 215, 0, 50)
+ORANGE = (255, 165, 0)
+DARK_ORANGE = (255, 140, 0)
+CORAL = (255, 127, 80)
+LIGHT_GOLDEN_YELLOW = (250, 250, 230, 200)
+
+# Brown variants
+BROWN = (165, 42, 42)
+CHOCOLATE = (210, 105, 30)
+SADDLE_BROWN = (139, 69, 19)
+SIENNA = (160, 82, 45)
+TAN = (210, 180, 140)
+BEIGE = (245, 245, 220)
+
+# Pink variants
+PINK = (255, 192, 203)
+HOT_PINK = (255, 105, 180)
+DEEP_PINK = (255, 20, 147)
+PALE_VIOLET_RED = (219, 112, 147)
+
+# Special colors
+CYAN = (0, 255, 255)
+MAGENTA = (255, 0, 255)
+TEAL = (0, 128, 128)
+OLIVE_DRAB = (107, 142, 35)
+SLATE_GRAY = (112, 128, 144)
+SNOW = (255, 250, 250)
+GLASS = (0, 0, 0, 0)
